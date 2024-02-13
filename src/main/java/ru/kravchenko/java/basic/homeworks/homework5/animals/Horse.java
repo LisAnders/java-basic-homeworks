@@ -2,13 +2,11 @@ package ru.kravchenko.java.basic.homeworks.homework5.animals;
 
 public class Horse extends Animal {
 
-    private float swimSpeed;
-
     public Horse(String name, float runSpeed, float swimSpeed, int stamina) {
-        super(name, runSpeed, stamina);
-        this.swimSpeed = swimSpeed;
+        super(name, runSpeed, swimSpeed, stamina);
     }
 
+    @Override
     public float swim(int distance) {
         if (this.stamina <= 0 || (this.stamina / 4) - distance < 0) {
             System.out.println("Животное устало");
@@ -19,6 +17,7 @@ public class Horse extends Animal {
         System.out.println("Животное: " + this.name + " проплыло дистанцию " + distance + " за " + swimTimeResult + " секунд");
         return swimTimeResult;
     }
+
     @Override
     public void info() {
         System.out.println("Животное класса: Лошадь\nИмя: " + this.name + "\nСкорость бега: " + this.runSpeed +

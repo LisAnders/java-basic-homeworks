@@ -4,8 +4,9 @@ import ru.kravchenko.java.basic.homeworks.homework5.animals.*;
 
 public class MainApp {
     public static void main(String[] args) {
-        Cat cat = new Cat("Бантик", 2, 10);
+        Cat cat = new Cat("Бантик", 2, 15);
         cat.run(10);
+        cat.swim(5);
         cat.info();
 
         Dog dog = new Dog("Иви", 5, 3, 20);

@@ -1,7 +1,7 @@
 package ru.kravchenko.java.basic.homeworks.homework5.animals;
 
 public class Cat extends Animal {
-    public Cat(String name, int runSpeed, int stamina) {
+    public Cat(String name, float runSpeed, int stamina) {
         super(name, runSpeed, stamina);
     }
 
