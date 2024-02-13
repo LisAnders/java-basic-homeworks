@@ -4,6 +4,7 @@ public class Animal {
     protected String name;
     protected float runSpeed;
     protected float swimSpeed;
+    protected int swimStaminaCost = 1;
     protected int stamina;
 
     public Animal(String name, float runSpeed, float swimSpeed, int stamina) {
@@ -35,11 +36,11 @@ public class Animal {
             System.out.println("Животное не умеет плавать");
             return -1f;
         }
-        if (this.stamina <= 0 || this.stamina - distance < 0) {
+        if (this.stamina <= 0 || this.stamina - distance * this.swimStaminaCost < 0) {
             System.out.println("Животное устало");
             return -1f;
         }
-        this.stamina -= distance;
+        this.stamina -= distance * this.swimStaminaCost;
         float swimTimeResult = distance / this.swimSpeed;
         System.out.println("Животное: " + this.name + " проплыло дистанцию " + distance + " за " + swimTimeResult + " секунд");
         return swimTimeResult;

@@ -4,19 +4,9 @@ public class Horse extends Animal {
 
     public Horse(String name, float runSpeed, float swimSpeed, int stamina) {
         super(name, runSpeed, swimSpeed, stamina);
+        this.swimStaminaCost = 4;
     }
 
-    @Override
-    public float swim(int distance) {
-        if (this.stamina <= 0 || (this.stamina / 4) - distance < 0) {
-            System.out.println("Животное устало");
-            return -1;
-        }
-        this.stamina -= distance * 4;
-        float swimTimeResult = distance / this.swimSpeed;
-        System.out.println("Животное: " + this.name + " проплыло дистанцию " + distance + " за " + swimTimeResult + " секунд");
-        return swimTimeResult;
-    }
 
     @Override
     public void info() {
