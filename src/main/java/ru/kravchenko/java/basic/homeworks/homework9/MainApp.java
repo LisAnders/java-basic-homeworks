@@ -1,9 +1,7 @@
 package ru.kravchenko.java.basic.homeworks.homework9;
 
-import java.sql.Array;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.LinkedList;
 import java.util.List;
 
 public class MainApp {
@@ -17,7 +15,7 @@ public class MainApp {
         Employee pete = new Employee("Pete", 23);
         Employee tom = new Employee("Tom", 45);
         Employee sam = new Employee("Sam", 20);
-        ArrayList<Employee> employees = new ArrayList<>(Arrays.asList(bob, pete, tom, sam));
+        List<Employee> employees = new ArrayList<>(Arrays.asList(bob, pete, tom, sam));
 
         System.out.println(getEmployeeNames(employees));
         System.out.println(getEmployeesByMinAge(25, employees));
@@ -27,8 +25,8 @@ public class MainApp {
 
     }
 
-    public static ArrayList<Integer> sequenceArrayList(int min, int max) {
-        ArrayList<Integer> arrayList = new ArrayList<>();
+    public static List<Integer> sequenceArrayList(int min, int max) {
+        List<Integer> arrayList = new ArrayList<>();
         for (int i = min; i <= max; i++) {
             arrayList.add(i);
         }
@@ -37,38 +35,38 @@ public class MainApp {
 
     public static int sumListElements(List<Integer> list) {
         int result = 0;
-        for (int i = 0; i < list.size(); i++) {
-            if (list.get(i) > 5) {
-                result += list.get(i);
+        for (Integer element : list) {
+            if (element > 5) {
+                result += element;
             }
         }
         return result;
     }
 
-    public static ArrayList<Integer> setListElements(int num, ArrayList<Integer> arrayList) {
-        for (int i = 0; i < arrayList.size(); i++) {
-            arrayList.set(i, num);
+    public static List<Integer> setListElements(int num, List<Integer> list) {
+        for (int i = 0; i < list.size(); i++) {
+            list.set(i, num);
         }
-        return arrayList;
+        return list;
     }
 
-    public static ArrayList<Integer> increaseListElements(int num, ArrayList<Integer> arrayList) {
-        for (int i = 0; i < arrayList.size(); i++) {
-            arrayList.set(i, arrayList.get(i) + num);
+    public static List<Integer> increaseListElements(int num, List<Integer> list) {
+        for (int i = 0; i < list.size(); i++) {
+            list.set(i, list.get(i) + num);
         }
-        return arrayList;
+        return list;
     }
 
-    public static ArrayList<String> getEmployeeNames(ArrayList<Employee> employees) {
-        ArrayList<String> names = new ArrayList<>();
+    public static List<String> getEmployeeNames(List<Employee> employees) {
+        List<String> names = new ArrayList<>();
         for (Employee employee : employees) {
             names.add(employee.getName());
         }
         return names;
     }
 
-    public static ArrayList<Employee> getEmployeesByMinAge(int minAge, ArrayList<Employee> employees) {
-        ArrayList<Employee> employeesByMinAge = new ArrayList<>();
+    public static List<Employee> getEmployeesByMinAge(int minAge, List<Employee> employees) {
+        List<Employee> employeesByMinAge = new ArrayList<>();
         for (Employee employee : employees) {
             if (employee.getAge() >= minAge) {
                 employeesByMinAge.add(employee);
@@ -77,11 +75,12 @@ public class MainApp {
         return employeesByMinAge;
     }
 
-    public static void checkEmployeeAverageAge(int minAverageAge, ArrayList<Employee> employees) {
+    public static void checkEmployeeAverageAge(int minAverageAge, List<Employee> employees) {
         int averageAge = 0;
         for (Employee employee : employees) {
-            averageAge += employee.getAge() / employees.size();
+            averageAge += employee.getAge();
         }
+        averageAge = averageAge / employees.size();
         if (minAverageAge <= averageAge) {
             System.out.println("Указанный минимальный средний возраст: " + minAverageAge + " не превышает средний возраст сотрудников: " + averageAge);
         } else {
@@ -89,7 +88,7 @@ public class MainApp {
         }
     }
 
-    public static Employee getYoungestEmployee(ArrayList<Employee> employees) {
+    public static Employee getYoungestEmployee(List<Employee> employees) {
         Employee youngestEmployee = employees.get(0);
         for (Employee employee : employees) {
             if (employee.getAge() < youngestEmployee.getAge()) {
