@@ -11,22 +11,13 @@ public class MainApp {
     public static void main(String[] args) {
         File dir = new File(ROOT_DIR);
         Scanner scanner = new Scanner(System.in);
-        while (true) {
+        boolean start = true;
+        while (start) {
             Set<String> files = getTxtFiles(dir);
             if (files.isEmpty()) {
-                System.out.println("Нет файлов в каталоге : " + dir.getAbsolutePath());
-                System.out.println("Создать новый txt файл? (y/n)");
-                System.out.print("-> ");
-                String input = scanner.nextLine();
-                if (input.equals("y")) {
-                    createOrEditTxtFile();
-                } else if (input.equals("n")) {
-                    System.out.println("Пока!");
+                if (!createNewFile(dir)) {
                     break;
-                } else {
-                    continue;
                 }
-
             } else {
                 System.out.println("Содержимое каталога " + dir.getAbsolutePath() + ":");
                 for (String file : files) {
@@ -35,15 +26,17 @@ public class MainApp {
                 System.out.println("\n * edit - изменить/создать файл \n * tree - древо каталогов \n * exit - выход");
                 System.out.print("-> ");
                 String input = scanner.nextLine();
-                if (input.equals("edit")) {
-                    createOrEditTxtFile();
-                } else if (input.equals("tree")) {
-                    showCatalogTree(ROOT_DIR, "");
-                } else if (input.equals("exit")) {
-                    System.out.println("Пока!");
-                    break;
-                } else {
-                    continue;
+                switch (input) {
+                    case "edit":
+                        createOrEditTxtFile();
+                        break;
+                    case "tree":
+                        showCatalogTree(ROOT_DIR, "");
+                        break;
+                    case "exit":
+                        System.out.println("Пока!");
+                        start = false;
+                        break;
                 }
             }
         }
@@ -58,6 +51,20 @@ public class MainApp {
             }
         }
         return files;
+    }
+
+    public static boolean createNewFile(File dir) {
+        Scanner scanner = new Scanner(System.in);
+        System.out.println("Нет файлов в каталоге : " + dir.getAbsolutePath());
+        System.out.println("Создать новый txt файл? (y = да, иначе - выход)");
+        System.out.print("-> ");
+        String input = scanner.nextLine();
+        if (input.equals("y")) {
+            createOrEditTxtFile();
+            return true;
+        }
+        System.out.println("Пока!");
+        return false;
     }
 
     public static void createOrEditTxtFile() {
